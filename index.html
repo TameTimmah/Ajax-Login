@@ -1,6 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
+
+
 <!--Stylesheets-->
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 
@@ -9,68 +11,17 @@
 <!--Scripts-->
 <script language="javascript" type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script language="javascript" type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/jquery.validate.min.js"></script>
-
-<script lang="javascript">
-function showAndTell(appear, disappear){
-	
-			$(appear).show();
-	
-	$(disappear).hide();
-	
-};
-</script>
+<script language="javascript" type="text/javascript" src="scripts/data_handling.js"></script>
+<script language="javascript" type="text/javascript" src="scripts/display_scripts.js"></script>
 <script>
 
-function check_login(){
-
-   	 	$.ajax({
-        	type: 'POST',
-        	url: 'handle_data.php',
-        	data: "username=" + $('#username').val() + "&password=" + $('#password').val() "task=login",
-        	success: function(response){
-                if(response === 'Correct'){
-              		window.location = "home.php"
-               }
-            	else if(response === 'napproved'){
-	           	 	$('.messageText').append('Your account has not yet been validated.');
-	           	 	$(".messageImage").append('<img src="images/error.png" height="50" width="50">');
-	           	 	$('.message').show();
-	            
-	            }
-            	else if(response === 'Incorrect'){
-	            	$('.messageText').append('The login information you have entered is incorrect.');
-	            	$(".messageImage").append('<img src="images/error.png" height="50" width="50">');
-
-	            	$('.message').show();
-	            }
-            	else{
-	            
-	          		$('.messageText').append('There was an unknown error.  Please try again later.');
-	          		$(".messageImage").append('<img src="images/error.png" height="50" width="50">');
-
-	            	$('.message').show();
-  
-	            
-	            }
-            
-             };
-         });
- 
-
-    };
-
-
-
-
-</script>
-
-
-<!--Sliding icons-->
-<script type="text/javascript">
 $(document).ready(function() {
-	$(".registerWrapper").hide();
-	$(".forgotWrapper").hide();
 	$(".message").hide();
+	
+	$(".registerWrapper").hide();
+	
+	$(".forgotWrapper").hide();
+
 	$(".username").focus(function() {
 		$(".user-icon").css("left","-48px");
 	});
@@ -90,18 +41,17 @@ $(document).ready(function() {
 	$(".emailAddress").blur(function() {
 		$(".email-icon").css("left","0px");
 	});
-
 });
 </script>
+
+ </script>
 </head>
 <body>
-
-
-    	<div class="message">
+<div class="message">
 <div class="messageText"></div>
 <div class="messageImage"></div>
 </div>
-
+ 
 <div id="wrapper" class="loginWrapper">
 	<!--Sliding icons-->
     <div class="user-icon"></div>
@@ -110,28 +60,27 @@ $(document).ready(function() {
 
 <!--login form inputs-->
 <div class="login-form">
-<form id="loginForm" onsubmit='check_login();return false;' method="post">
+<form id="loginForm" onsubmit='check_login();return false;'>
 
 	<!--Header-->
     <div class="header">
-    <h1>Login Form</h1>
-    <span>Enter your login information here.</span>
+    	<h1>Login Form</h1>
+    	<span>For authorized users only.</span>
     </div>
     <!--END header-->
 	
 	<!--Input fields-->
     <div class="content">
-	<!--USERNAME--><input name="username" type="text" class="input username required" id="username" placeholder="Username" /><!--END USERNAME-->
-    <!--PASSWORD--><input name="password" type="password" id="password" class="input password required" placeholder="Password" /><!--END PASSWORD-->
-
+		<input name="username" type="text" class="input username required" id="username" placeholder="Username" />
+		<input name="password" type="password" id="password" class="input password required" placeholder="Password" />
     </div>
     <!--END Input fields-->
     
     <!--Buttons-->
     <div class="footer">
-    <!--Login button--><input id="submit" type="submit" name="Login" value="Login" class="button" id="login"/><!--END Login button--></form>
-  <a href="#" id="submit" type="submit" name="Register" value="Register" class="register" onclick="showAndTell('.registerWrapper','.loginWrapper');">Register</a>
-    <a href="#" id="submit" type="submit" name="Forgot Username/Password" value="Forgot Username/Password" class="register" onclick="showAndTell('.forgotWrapper','.loginWrapper');">Forgot Username/Password</a>
+    	<input id="submit" type="submit" name="Login" value="Login" class="button" id="login"/></form>
+    	<a href="#" id="submit" class="register" onclick="showAndTell('.registerWrapper','.loginWrapper');">Register</a>
+    	<a href="#" id="submit" class="register" onclick="showAndTell('.forgotWrapper','.loginWrapper');">Forgot Credentials</a>
    
    
     </div>
@@ -139,6 +88,8 @@ $(document).ready(function() {
 
 
 <!--end login form-->
+
+</div>
 </div>
 </div>
 
@@ -151,76 +102,72 @@ $(document).ready(function() {
 
 <!--login form inputs-->
 <div class="login-form">
-<form id="loginForm" onsubmit='check_login();return false;'>
+	<form id="loginForm" onsubmit='registerUser();return false;'>
 
 	<!--Header-->
     <div class="header">
-    <h1>Registration Form</h1>
-    <span>Register for an account here.</span>
+    	<h1>Registration Form</h1>
+    	<span>Register for an account here.</span>
     </div>
     <!--END header-->
 	
 	<!--Input fields-->
     <div class="content">
-	<!--USERNAME--><input name="username" type="text" class="input username required" id="username" placeholder="Username" /><!--END USERNAME-->
-    <!--PASSWORD--><input name="password" type="password" id="password" class="input password required" placeholder="Password" /><!--END PASSWORD-->
-    <!--PASSWORD--><input name="emailAddress" type="email" id="emailAddress" class="input emailAddress required" placeholder="Email Address" style="margin-top:25px;"/><!--END PASSWORD-->
+		<input name="username" type="text" class="input username required" id="registerUsername" placeholder="Username" />
+		<input name="password" type="password" id="registerPassword" class="input password required" placeholder="Password" />
+		<input style="margin-top:25px;" name="email" type="email" id="registerEmail" class="input emailAddress required" placeholder="Email Address" />
     </div>
     <!--END Input fields-->
     
     <!--Buttons-->
     <div class="footer">
-    <input id="submit" type="submit" name="Login" value="Send Email" class="button" id="login"/>
-    <!--Login button--> <a href="#" id="submit" type="submit" name="Register" value="Register" class="register" onclick="showAndTell('.loginWrapper','.registerWrapper');"><--Login</a>
-<!--END Login button--></form>
-       
-   
+    	<input id="submit" type="submit" name="Login" value="Register" class="button" id="login"/></form>
+    	<a href="#" id="submit" class="register" onclick="showAndTell('.loginWrapper','.registerWrapper');"><--Login</a>
+     
     </div>
     <!--END Buttons-->
-
-
 <!--end login form-->
+
+</div>
 </div>
 </div>
 
 <div id="wrapper" class="forgotWrapper">
 	<!--Sliding icons-->
-    <div class="email-icon" style="margin-top:-128px;"></div>
+    <div class="email-icon" style="margin-top:-143px;"></div>
     <!--END Sliding icons-->
 
 <!--login form inputs-->
 <div class="login-form">
-<form id="loginForm" onsubmit='check_login();return false;'>
+	<form id="loginForm" onsubmit='forgot();return false;'>
 
 	<!--Header-->
     <div class="header">
-    <h1>Forgot Credentials</h1>
-    <span>Enter your email address to retrieve your login information.</span>
+    	<h1>Forgot Credentials</h1>
+    	<span>Enter your email address for your login information.</span>
     </div>
     <!--END header-->
 	
 	<!--Input fields-->
     <div class="content">
-	
-    <!--PASSWORD--><input name="emailAddress" type="email" id="emailAddress" class="input emailAddress required" placeholder="Email Address" style="margin-top:-25;"/><!--END PASSWORD-->
+		<input name="email" type="email" id="forgotEmail" class="input emailAddress required" placeholder="Email Address" />
     </div>
     <!--END Input fields-->
     
     <!--Buttons-->
     <div class="footer">
-    <!--Login button--><input id="submit" type="submit" name="Login" value="Send Email" class="button" id="login"/><!--END Login button--></form>
-           <!--Login button--> <a href="#" id="submit" type="submit" name="Register" value="Register" class="register" onclick="showAndTell('.loginWrapper','.forgotWrapper');"><--Login</a>
-   
+    	<input id="submit" type="submit" name="Login" value="Send Email" class="button" id="login"/></form>
+    	<a href="#" id="submit" class="register" onclick="showAndTell('.loginWrapper','.forgotWrapper');"><--Login</a>
     </div>
     <!--END Buttons-->
-
-
 <!--end login form-->
+
 </div>
 </div>
+</div>
+
 
 <!--bg gradient--><div class="gradient"></div><!--END bg gradient-->
-
 
 </body>
 </html>

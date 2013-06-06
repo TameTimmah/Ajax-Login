@@ -1,0 +1,258 @@
+@import url(http://fonts.googleapis.com/css?family=Bree+Serif);
+
+body 
+{
+
+ background: url('../images/bg.jpg') center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+ margin:0px;
+
+}
+
+#nav
+ {
+position: fixed;
+top: 0;
+width: 100%;
+color: #ffffff;
+height: 35px;
+text-align: center;
+padding-top: 15px;
+/* Adds shadow to the bottom of the bar */
+-webkit-box-shadow: 0px 0px 8px 0px #000000;
+-moz-box-shadow: 0px 0px 8px 0px #000000;
+box-shadow: 0px 0px 8px 0px #000000;
+/* Adds the transparent background */
+background-color: rgba(1, 1, 1, 0.8);
+color: rgba(1, 1, 1, 0.8);
+  overflow:hidden;
+ 
+}
+#navigation a {
+font-size: 14px;
+padding-left: 15px;
+padding-right: 15px;
+color: white;
+text-decoration: none;
+}
+.title
+ {
+ color:#EDEDED;
+ font-family:verdana;
+ font-size:25px;
+ width:350px;
+ margin-top:6px;
+ margin-left:150px;
+ font-weight:bold;
+ float:left;
+}
+.subtitle 
+{
+ color:#EDEDED;
+ font-family:verdana;
+ font-size:15px;
+}
+
+#navigation
+{
+ list-style-type:none; 
+ 
+}
+
+#nav a
+{
+ font-family:verdana;
+ text-decoration:none;
+ color:#EDEDED;
+} 
+#nav a:hover 
+{
+ color:#BDBDBD;
+}
+
+.container
+{
+
+ background: url('../images/dots.png') center center fixed;
+ width:100%;
+ height:100%;
+
+
+overflow: auto;
+     padding-top: 1px;
+    margin-top: 52px;
+    
+   
+}
+
+.bigMessage{
+	width:600px;
+	background: #f3f3f3;	
+	border-radius: 5px;
+
+	padding:1px;
+	box-shadow: 0px 1px 6px rgba(0,0,0,0.5);
+
+
+}
+
+.bigMessageImage{
+	margin-left:380px;
+}
+
+.bigMessageText{
+	font-weight: 300;
+	font-size: 30px;
+	color: #414848;
+	word-wrap: normal;
+	width:300px;
+	margin-left:20px;
+}
+
+.bigMessageText a{
+color:blue;
+	
+}
+
+.message {
+	width:500px;
+	height:75px;
+	background: #f3f3f3;	
+	border-radius: 5px;
+	margin-left: auto;
+	margin-right:auto;
+	padding:1px;
+	box-shadow: 0px 1px 6px rgba(0,0,0,0.5);
+	
+}
+
+.messageImage{
+	
+margin-left:440px;	
+margin-top:-33px;
+}
+
+.messageText{
+	font-weight: 300;
+	font-size: 17px;
+	color: #414848;
+	word-wrap: normal;
+	width:420px;
+	text-align:center;
+	margin-left:5px;
+	margin-top: 25px;
+	vertical-align: middle;
+
+}
+
+.module{
+	background: #f3f3f3;	
+	border-radius: 5px;
+	padding:1px;
+	box-shadow: 0px 1px 6px rgba(0,0,0,0.5);
+
+}
+
+
+	.moduleTitle{
+	margin-left:20px;
+	font-family: 'Bree Serif', serif;
+	font-weight: 300;
+	font-size: 30px;
+	line-height:34px;
+	color: #414848;
+	text-shadow: 1px 1px 0 rgba(256,256,256,1.0);
+	margin-bottom: 10px;
+	text-align: center;
+	
+}
+
+	
+.submit{
+
+	padding:5px 3px;
+	
+	font-family: 'Bree Serif', serif;
+	font-weight: 300;
+	font-size: 18px;
+	color: #fff;
+	text-shadow: 0px 1px 0 rgba(0,0,0,0.25);
+	
+	background: #56c2e1;
+	border: 1px solid #46b3d3;
+	border-radius: 5px;
+	cursor: pointer;
+	
+	box-shadow: inset 0 0 2px rgba(256,256,256,0.75);
+	-moz-box-shadow: inset 0 0 2px rgba(256,256,256,0.75);
+	-webkit-box-shadow: inset 0 0 2px rgba(256,256,256,0.75);
+	
+}
+
+.submit:hover{
+	
+	background: #3f9db8;
+	border: 1px solid rgba(256,256,256,0.75);
+	
+	box-shadow: inset 0 1px 3px rgba(0,0,0,0.5);
+	-moz-box-shadow: inset 0 1px 3px rgba(0,0,0,0.5);
+	-webkit-box-shadow: inset 0 1px 3px rgba(0,0,0,0.5);
+	
+}
+
+.submit:focus{
+	
+	position: relative;
+	bottom: -1px;
+	
+	background: #56c2e1;
+	
+	box-shadow: inset 0 1px 6px rgba(256,256,256,0.75);
+	-moz-box-shadow: inset 0 1px 6px rgba(256,256,256,0.75);
+	-webkit-box-shadow: inset 0 1px 6px rgba(256,256,256,0.75);
+	
+}
+
+.input{
+	
+	width: 188px;
+	padding: 15px 25px;
+	
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+	font-weight: 400;
+	font-size: 14px;
+	color: #9d9e9e;
+	text-shadow: 1px 1px 0 rgba(256,256,256,1.0);
+	
+	background: #fff;
+	border: 1px solid #fff;
+	border-radius: 5px;
+	
+	box-shadow: inset 0 1px 3px rgba(0,0,0,0.50);
+	-moz-box-shadow: inset 0 1px 3px rgba(0,0,0,0.50);
+	-webkit-box-shadow: inset 0 1px 3px rgba(0,0,0,0.50);
+
+	
+}
+
+.input:hover{
+	
+	background: #dfe9ec;
+	color: #414848;
+	
+}
+
+.input:focus{
+	
+	background: #dfe9ec;
+	color: #414848;
+	
+	box-shadow: inset 0 1px 2px rgba(0,0,0,0.25);
+	-moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.25);
+	-webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.25);
+
+	
+}

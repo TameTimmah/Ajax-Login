@@ -89,14 +89,14 @@ function checkIfUserAlreadyExists($username, $password){
 	if($count == 1){
 	
 		//True if yes
-		return true;
+		return 'true';
 		
 	}
 	
 	else if($count == 0){
 		
 		//False if no
-		return false;
+		return 'false';
 		
 	}
 	
@@ -231,7 +231,7 @@ function insertUser($username, $password, $emailAddress){
 	$password = saltPassword($password);
 
 	//Check if username already exists
-	if (checkIfUserAlreadyExists($username, $password)){
+	if (!checkIfUserAlreadyExists($username, $password)){
 		
 		echo "utaken";
 		
@@ -257,15 +257,17 @@ function insertUser($username, $password, $emailAddress){
 		//Execute database query
 		executeDatabase($databaseQuery);
 	
+		//Get email address string
+		$email_webmaster = $obj->email_webmaster();
 	
 		//Get confirmation url
 		$url_confirm = $obj->confirm_url();
 	
 	
 		//Create message
-		$message = "Thanks for registering!\n\nUsername: $username\n\nEmail Address: $emailAddress\n\nConfirm User: $url_confirm".$hash."&emailAddress=".$emailAddress;
+		$message = "Thank you for registering!\n\nUsername: $username\n\nEmail Address: $emailAddress\n\nConfirm User: $url_confirm".$hash."&emailAddress=".$emailAddress;
 	
-		$subject = "Thanks for registering!";
+		$subject = "Thank you for registering!";
 	
 		//Send Email
 		sendEmail($message, $emailAddress, $subject);
@@ -311,6 +313,10 @@ function authorizeUser($hash, $emailAddress){
 
 //Sends email to user with credentials
 function forgotCredentials($emailAddress){
+	//Checks if email address exists
+	if(!checkIfEmailExists($emailAddress)){
+		print ('enot');
+	}
 	
 	//Create database query
 	$databaseQuery = "SELECT * FROM login WHERE emailAddress='$emailAddress'";
@@ -327,15 +333,15 @@ function forgotCredentials($emailAddress){
    		$password = $row['password'];
    		$hash = $row['hash'];
    		$confirmHash = $hash.$password;
-   		
    		$reset_url = $obj->reset_url().$confirmHash."&email=".$emailAddress;
    		
 		//Create Email
   		$subject = 'Request Login Credentials';
-  		$message = "Username:$username\nPassword:$reset_URL";
+  		$message = "Username:$username\nPassword:$reset_url";
 		
 		//Send email
 		sendEmail($message, $row['emailAddress'], $subject);
+		print ('Correct');
 	}
 
 }
@@ -345,24 +351,6 @@ function logout(){
 	
 	session_start();
 	session_destroy();
-	
-}
-
-//Changes user's password
-function changePassword($username, $password){
-	
-	//Clean strings for security
-	secureStrings($username, $password)->$username;
-	secureStrings($username, $password)->$password;
-	
-	//Salt password
-	$password = saltPassword($password);
-	
-	//Create database query
-	$databaseQuery = "UPDATE login SET password='$password' WHERE username='$username'";
-	
-	//Execute database
-	executeDatabase($databaseQuery);
 	
 }
 
@@ -398,6 +386,67 @@ window.location = "index.html"
 </script>';
 	}
 
+	
+}
+
+function resetPassword($ticket, $emailAddress, $newPassword){
+	//Create query
+	$databaseQuery = "SELECT * FROM login WHERE emailAddress='$emailAddress'";
+	
+	//Execute Database query
+	$result = executeDatabase($databaseQuery);
+	
+	//Fetch array
+	while($row = mysqli_fetch_array($result)){
+
+		//Create ticket based off database
+		$hash = $row['hash'];
+		$password = $row['password'];
+		$checkTicket = $hash.$password;
+		
+		if ($checkTicket == $ticket){
+			$newPassword = saltPassword($newPassword);
+			$databaseQuery = "UPDATE login SET password='$newPassword' WHERE emailAddress='$emailAddress'";
+			executeDatabase($databaseQuery);
+			print ('reset');
+		}
+		
+		else {
+			print ('brequest');
+		}
+				
+	}
+	
+}
+
+function changePassword($ticket, $username, $newPassword){
+	
+	//Create query
+	$databaseQuery = "SELECT * FROM login WHERE username='$username'";
+	
+	//Execute Database query
+	$result = executeDatabase($databaseQuery);
+	
+	//Fetch array
+	while($row = mysqli_fetch_array($result)){
+
+		//Create ticket based off database
+		$hash = $row['hash'];
+		$password = $row['password'];
+		$checkTicket = $hash;
+		
+		if ($checkTicket == $ticket){
+			$newPassword = saltPassword($newPassword);
+			$databaseQuery = "UPDATE login SET password='$newPassword' WHERE emailAddress='$username'";
+			executeDatabase($databaseQuery);
+			print ('reset');
+		}
+		
+		else {
+			print ('error');
+		}
+				
+	}
 	
 }
 

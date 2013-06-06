@@ -8,21 +8,22 @@ class declarations {
  	private $database_serverURL;
  	private $con;
 
-        //Table Structures
+	//Table structures
  	public $structure_login;
  	
-	//Email Addresses
+ 	//Email Addresses
  	public $email_webmaster;
  	public $email_from;
+
  	//URL
  	public $confirm_url;
  	private $reset_url;
-
+ 	
 	public function populateVariables() {
 		
 		//Database declarations
  		$this->database_username = "username";
- 		$this->database_dbName = "dbName";
+ 		$this->database_dbName = "databaseName";
  		$this->database_password = "password";
  		$this->database_serverURL = "server";
 
@@ -31,7 +32,8 @@ class declarations {
 		
 		//Email Addresses
 		$this->email_webmaster = "webmaster@example.com";
-		$this->email_from = "DO-NOT-REPLY@example.com";
+ 		$this->email_from = "DO-NOT-REPLY@example.com";
+ 		
  		//URL
  		$this->confirm_url = "http://example.com/authorize.php?hash=";
  		$this->reset_url = "http://example.com/reset.php?ticket=";
@@ -56,14 +58,10 @@ class declarations {
 		$this->populateVariables();
 		return $this->database_serverURL;
 	}
-
-
 	public function structure_login(){
 		$this->populateVariables();
 		return $this->structure_login;
 	}
-
-
 	public function email_webmaster(){
 		$this->populateVariables();
 		return $this->email_webmaster;
@@ -73,13 +71,13 @@ class declarations {
 		$this->populateVariables();
 		return $this->email_from;
 	}
-
+	
 	public function confirm_url(){
 		$this->populateVariables();
 		return $this->confirm_url;
 	}
 	
-	private function reset_url(){
+	public function reset_url(){
 		$this->populateVariables();
 		return $this->reset_url;
 	}
@@ -97,4 +95,3 @@ class declarations {
 	}
 }
 ?>
-		

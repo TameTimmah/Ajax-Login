@@ -19,7 +19,7 @@ authorizeUser($hash, $emailAddress);
 ?>
 
 <div class="bigMessage">
-<div class="bigMessageText" style="margin-top:60px;">Account has been authorized! <a href="index.php">Login</a></div>
+<div class="bigMessageText" style="margin-top:60px;">Account has been authorized! <a href="index.html">Login</a></div>
 <div class="bigMessageImage">
 <img src="images/success.png" height="200" width="200" style="margin-top:-130px;">
 </div>

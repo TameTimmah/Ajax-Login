@@ -5,90 +5,56 @@
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 <script language="javascript" type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script language="javascript" type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/jquery.validate.min.js"></script>
-<script type="text/javascript">
-$(document).ready(function() {
-$('.message').hide();
-};
-</script>
-<script>
-function check_login(){
-
-   	 	$.ajax({
-        	type: 'POST',
-        	url: 'resetpwd.php',
-        	data: "username=" + $('#username').val() + "&password=" + $('#password').val() "task=login",
-        	success: function(response){
-                if(response === 'Reset'){
-              		$('.messageText').append('Password has been sucessfully reset to <i style="color:#0092ff;">"' + $('#password').val() + '"</i>');
-	          		$(".messageImage").append('<img src="images/success.png" height="50" width="50">');
-
-	            	$('.message').show();
-               }
-            	else{
-	            
-	          		$('.messageText').append('You have submitted a bad request.  Request new reset.');
-	          		$(".messageImage").append('<img src="images/error.png" height="50" width="50">');
-
-	            	$('.message').show();
-  
-	            
-	            }
-            
-             };
-         });
- 
-
-    };
-
-</script>
+<script language="javascript" type="text/javascript" src="scripts/data_handling.js"></script>
 </head>
 <body>
 
+    	<div class="message">
+<div class="messageText"></div>
+<div class="messageImage"></div>
+</div>
 <?php
 
-include('classes/class_login.php');
-
 $ticket = $_GET['ticket'];
-$emailAddress = $_GET['emailAddress'];
+$emailAddress = $_GET['email'];
 
 ?>
 <div id="wrapper" class="forgotWrapper">
 	<!--Sliding icons-->
-    <div class="pass-icon" style="margin-top:-128px;"></div>
+    <div class="pass-icon" style="margin-top:-143px;"></div>
     <!--END Sliding icons-->
 
 <!--login form inputs-->
 <div class="login-form">
-<form id="loginForm" onsubmit='check_login();return false;'>
+	<form id="loginForm" onsubmit='reset_password();return false;'>
 
 	<!--Header-->
     <div class="header">
-    <h1>Forgot Credentials</h1>
-    <span>Enter your email address to retrieve your login information.</span>
+    	<h1>Reset Password</h1>
+    	<span>Enter your new password.</span>
     </div>
     <!--END header-->
 	
 	<!--Input fields-->
     <div class="content">
-	
-    <!--PASSWORD--><input name="password" type="password" id="password" class="input password required" placeholder="New Password" style="margin-top:-25;"/><!--END PASSWORD-->
+    	<input type="hidden" id="ticket" value="<?php echo $ticket; ?>">
+		<input name="newPassword" type="password" id="newPassword" class="input emailAddress required" placeholder="New Password" />
+		<input type="hidden" id="email" value="<?php echo $emailAddress; ?>">
     </div>
     <!--END Input fields-->
     
     <!--Buttons-->
     <div class="footer">
-    <!--Login button--><input id="submit" type="submit" name="Login" value="Reset" class="button" id="login"/><!--END Login button-->
-    <a href="index.html" id="submit" type="submit" name="Register" value="Register" class="register" ><--Login</a>
-    </form>
+    	<input id="submit" type="submit" name="Login" value="Reset" class="button" id="login"/></form>
+    	<a href="index.html" id="submit" class="register"><--Login</a>
     </div>
     <!--END Buttons-->
-
-
 <!--end login form-->
-</div>
-</div>
 
+<script>
 
+$('.message').hide();
 
+</script>
 </body>
 </html>
