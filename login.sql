@@ -1,20 +1,5 @@
 
--- phpMyAdmin SQL Dump
--- version 2.11.4
--- http://www.phpmyadmin.net
---
--- Host: localhost
--- Generation Time: Jun 06, 2013 at 11:33 AM
--- Server version: 5.1.57
--- PHP Version: 5.2.17
-
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
-
---
--- Database: `a7155461_app`
---
-
--- --------------------------------------------------------
 
 --
 -- Table structure for table `login`
