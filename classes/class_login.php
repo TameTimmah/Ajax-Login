@@ -3,6 +3,8 @@
 //Include config
 require_once('class_config.php');
 
+ob_start();
+
 //Instance class
 function createInstance(){
 	
@@ -210,9 +212,9 @@ function saltPassword($password){
 
 //Create session
 function createSession($username, $password){
-	
-	session_register("username");
-	session_register("password"); 
+	session_start();
+	$_SESSION['username'] = $username;
+	$_SESSION['password'] = $password; 
 	print ('Correct');
 	
 }
@@ -380,12 +382,12 @@ function deleteUser($hash){
 function isLoggedIn(){
 	
 	session_start();
-	if(!session_is_registered(username)){
+	if(!isset($_SESSION['username'])){
 			echo '<script type="text/javascript">
 window.location = "index.html"
 </script>';
 	}
-
+	
 	
 }
 
@@ -449,5 +451,5 @@ function changePassword($ticket, $username, $newPassword){
 	}
 	
 }
-
+ob_end_flush();
 ?>
