@@ -29,15 +29,13 @@ function executeDatabase($payload){
 }
 
 //Clean strings for security
-function secureStrings($username, $password){
+function secureStrings($input){
 	
 	//Strip slashes
-	$username = stripslashes($username);
-	$password = stripslashes($password);
+	$output = stripslashes($input);
 	
 	//Return
-	return $username;
-	return $password;
+	return $output;
 }
 
 //Check if user exists
@@ -167,8 +165,8 @@ function checkIfApproved($username, $password){
 function checkLogin($username, $password){
 	
 	//Clean strings for security
-	secureStrings($username, $password)->$username;
-	secureStrings($username, $password)->$password;
+	username = secureStrings($username);
+	password = secureStrings($password);
 	
 	//Salt password
 	$password = saltPassword($password);
