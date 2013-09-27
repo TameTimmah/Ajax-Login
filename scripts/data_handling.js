@@ -1,12 +1,12 @@
 
 
-
 function check_login(){
    	$.ajax({
         type: 'POST',
         url: 'data/login_form.php',
         data: "username=" + $('#username').val() + "&password=" + $('#password').val(),
         success: function(response){
+        	console.log(response);
             if(response === 'Correct'){
                window.location = "home.php"
             }
@@ -60,6 +60,7 @@ function registerUser(){
         url: 'data/register_form.php',
         data: "username=" + $('#registerUsername').val() + "&password=" + $('#registerPassword').val() + "&email=" + $('#registerEmail').val() + "&task=register",
         success: function(response){
+        	console.log(response);
             if(response === 'Correct'){
             		$('.messageText').empty()
             		$('.messageImage').empty()
@@ -122,6 +123,7 @@ function forgot(){
         url: 'data/forgot_form.php',
         data: "email=" + $('#forgotEmail').val(),
         success: function(response){
+        	console.log(response);
             if(response === 'Correct'){
             		$('.messageText').empty()
             		$('.messageImage').empty()
@@ -161,6 +163,7 @@ function reset_password(){
         url: 'data/reset_form.php',
         data: "ticket=" + $('#ticket').val() + "&newPassword=" + $('#newPassword').val() + "&email=" + $('#email').val(),
         success: function(response){
+        	console.log(response);
             if(response === 'reset'){
             		$('.messageText').empty()
             		$('.messageImage').empty()
@@ -201,6 +204,7 @@ function change_password(){
         url: 'data/change_form.php',
         data: "ticket=" + $('#ticket').val() + "&newPassword=" + $('#newPassword').val() + "&username=" + $('#username').val(),
         success: function(response){
+        	console.log(response);
             if(response === 'reset'){
             		$('.messageText').empty()
             		$('.messageImage').empty()
