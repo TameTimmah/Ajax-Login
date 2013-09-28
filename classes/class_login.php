@@ -165,8 +165,8 @@ function checkIfApproved($username, $password){
 function checkLogin($username, $password){
 	
 	//Clean strings for security
-	username = secureStrings($username);
-	password = secureStrings($password);
+	username == secureStrings($username);
+	password == secureStrings($password);
 	
 	//Salt password
 	$password = saltPassword($password);
